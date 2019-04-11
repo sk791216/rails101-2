@@ -3,11 +3,12 @@ class GroupsController < ApplicationController
   before_action :find_group_and_permission, only: [:edit, :update, :destroy]
   def index
     @group = Group.all
+
   end
 
   def show
     @group = Group.find(params[:id])
-    @posts = @group.posts
+    @posts = @group.posts.order("created_at ASC")
   end
 
   def new
